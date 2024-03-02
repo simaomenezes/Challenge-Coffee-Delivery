@@ -1,6 +1,7 @@
 import { Intro } from '../../components/Intro/indext'
 import { HomeContainer, ContextContainer, Heading } from './styles'
 import introImagem from '../../assets/intro_Imagem.svg'
+import { CoffeeList } from '../../components/CoffeeList'
 
 export function Home() {
   return (
@@ -18,6 +19,7 @@ export function Home() {
             </Heading>
 
             <Intro />
+            <CoffeeList />
           </div>
           <img src={introImagem} alt="Café do Coffee Delivery" />
         </ContextContainer>
