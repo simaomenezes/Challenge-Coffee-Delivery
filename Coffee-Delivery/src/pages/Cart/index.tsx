@@ -1,7 +1,14 @@
+import { Container, InfoContainer } from './styles'
+
 export function Car() {
   return (
-    <div>
-      <h1>My Car</h1>
-    </div>
+    <Container>
+      <InfoContainer>
+        <h2>Complete seu pedido</h2>
+      </InfoContainer>
+      <InfoContainer>
+        <h2>Cafés selecionados</h2>
+      </InfoContainer>
+    </Container>
   )
 }
