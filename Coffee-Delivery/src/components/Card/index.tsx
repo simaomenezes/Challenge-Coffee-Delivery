@@ -1,32 +1,34 @@
 import {
   CardContainer,
   CoffeeImg,
-  Control,
   Description,
-  Order,
-  Price,
+  Tags,
   Title,
 } from './styles'
-import coffeeImagem from '../../assets/coffee-Image.svg'
-import { ShoppingCart } from 'phosphor-react'
-export function Card() {
+
+type Props = {
+  coffee: {
+    id: string
+    title: string
+    description: string
+    tags: string[]
+    price: number
+    image: string
+  }
+}
+
+export function Card({ coffee }: Props) {
   return (
     <CardContainer>
-      <CoffeeImg src={coffeeImagem} alt="Coffee Imagem" />
-      <Title>Titulo aqui</Title>
-      <Description>Descrição aqui</Description>
-      <Control>
-        <Price>
-          <span>R$</span>
-          <span>12</span>
-        </Price>
+      <CoffeeImg src={coffee.image} alt={coffee.title} />
+      <Tags>
+        {coffee.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </Tags>
+      <Title>{coffee.title}</Title>
+      <Description>{coffee.description}</Description>
 
-        <Order>
-          <button>
-            <ShoppingCart size={22} />
-          </button>
-        </Order>
-      </Control>
     </CardContainer>
   )
 }

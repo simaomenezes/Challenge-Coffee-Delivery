@@ -1,29 +1,81 @@
-import { Intro } from '../../components/Intro/indext'
-import { HomeContainer, ContextContainer, Heading } from './styles'
-import introImagem from '../../assets/intro_Imagem.svg'
-import { CoffeeList } from '../../components/CoffeeList'
+import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
+import { useTheme } from "styled-components";
+import { CoffeeList, Heading, Hero, HeroContent, Info } from "./styles";
+
+import { coffees } from "../../../data.json"
+import { Card } from "../../components/Card";
 
 export function Home() {
+  const theme = useTheme()
   return (
     <div>
-      <HomeContainer>
-        <ContextContainer>
+      <Hero>
+        <HeroContent>
           <div>
             <Heading>
-              <h1>Encontre o café perfeito para qualquer hora do dia</h1>
-
+              <h1>Found the coffee perfect all time day</h1>
               <span>
-                Com o Coffee Delivery você recebe seu café onde estiver, a
-                qualquer hora
+                With Coffee Delivery you receive your coffee where it, all time.
               </span>
             </Heading>
 
-            <Intro />
-            <CoffeeList />
+            <Info>
+              <div>
+                <ShoppingCart
+                  size={32}
+                  weight="fill"
+                  color={theme.colors.background}
+                />
+                <span>Buy with security and simple</span>
+              </div>
+              
+              <div>
+                <Package
+                  size={32}
+                  weight="fill"
+                  color={theme.colors.background}
+                  style={{backgroundColor: theme.colors['base-text'] }}
+                />
+                <span>Packaging keeps coffee intact</span>
+              </div>
+
+              <div>
+                <Timer
+                  size={32}
+                  weight="fill"
+                  color={theme.colors.background}
+                  style={{backgroundColor: theme.colors.yellow }}
+                />
+                <span>Fast delivery and dryness</span>
+              </div>
+
+              
+              <div>
+                <Coffee
+                  size={32}
+                  weight="fill"
+                  color={theme.colors.background}
+                  style={{backgroundColor: theme.colors.purple }}
+                />
+                <span>The coffee arrives fresh to you</span>
+              </div>
+            </Info>
           </div>
-          <img src={introImagem} alt="Café do Coffee Delivery" />
-        </ContextContainer>
-      </HomeContainer>
+
+          <img src="/images/hero.svg" alt="Café do Coffee Delivery"/>
+        </HeroContent>
+
+        <img src="/images/hero-bg.svg" id="hero-bg" alt=""/>
+      </Hero>
+
+      <CoffeeList>
+        <h2>Nossos cafés</h2>
+        <div>
+          {coffees.map((coffee) => (
+            <Card key={coffee.id} coffee={coffee}/>
+          ))}
+        </div>
+      </CoffeeList>
     </div>
   )
 }
