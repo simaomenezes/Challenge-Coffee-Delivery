@@ -1,11 +1,25 @@
+import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
 import { useTheme } from 'styled-components'
-import { Container, Heading, Info, InfoContent, Order } from './styles'
-import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
+import { useParams } from 'react-router-dom'
 
-import delivery from '../../assets/Illustration.svg'
+import { useCart } from '../../hooks/useCart'
+import { Container, Heading, Info, InfoContent, Order } from './styles'
 
 export function Success() {
+  const { orders } = useCart()
+  const { orderId } = useParams()
+  const orderInfo = orders.find((order) => order.id === Number(orderId))
+  const paymentMethod = {
+    credit: 'Cartão de crédito',
+    debit: 'Cartão de débito',
+    cash: 'Dinheiro',
+  }
   const theme = useTheme()
+
+  if (!orderInfo?.id) {
+    return null
+  }
+
   return (
     <Container>
       <Order>
@@ -25,10 +39,15 @@ export function Success() {
 
               <div>
                 <span>
-                  Entrega em <strong>Descrição do texto</strong>
+                  Entrega em{' '}
+                  <strong>
+                    {orderInfo.street}, {orderInfo.number}
+                  </strong>
                 </span>
 
-                <span>Descrição do texto</span>
+                <span>
+                  {orderInfo.neighborhood} - {orderInfo.city},{orderInfo.state}
+                </span>
               </div>
             </div>
 
@@ -56,14 +75,14 @@ export function Success() {
               <div>
                 <span>Pagamento na entrega</span>
 
-                <strong>Descrição do texto</strong>
+                <strong>{paymentMethod[orderInfo.paymentMethod]}</strong>
               </div>
             </div>
           </InfoContent>
         </Info>
       </Order>
 
-      <img src={delivery} alt="Pedido concluído" />
+      <img src="/images/delivery.svg" alt="Pedido concluído" />
     </Container>
   )
 }

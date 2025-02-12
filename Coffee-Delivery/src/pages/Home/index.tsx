@@ -1,21 +1,25 @@
-import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
-import { useTheme } from "styled-components";
-import { CoffeeList, Heading, Hero, HeroContent, Info } from "./styles";
+import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
+import { useTheme } from 'styled-components'
 
-import { coffees } from "../../../data.json"
-import { Card } from "../../components/Card";
+import { Card } from '../../components/Card'
+
+import { coffees } from '../../../data.json'
+import { CoffeeList, Heading, Hero, HeroContent, Info } from './styles'
 
 export function Home() {
   const theme = useTheme()
+
   return (
     <div>
       <Hero>
         <HeroContent>
           <div>
             <Heading>
-              <h1>Found the coffee perfect all time day</h1>
+              <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+
               <span>
-                With Coffee Delivery you receive your coffee where it, all time.
+                Com o Coffee Delivery você recebe seu café onde estiver, a
+                qualquer hora
               </span>
             </Heading>
 
@@ -25,18 +29,19 @@ export function Home() {
                   size={32}
                   weight="fill"
                   color={theme.colors.background}
+                  style={{ backgroundColor: theme.colors['yellow-dark'] }}
                 />
-                <span>Buy with security and simple</span>
+                <span>Compra simples e segura</span>
               </div>
-              
+
               <div>
                 <Package
                   size={32}
                   weight="fill"
                   color={theme.colors.background}
-                  style={{backgroundColor: theme.colors['base-text'] }}
+                  style={{ backgroundColor: theme.colors['base-text'] }}
                 />
-                <span>Packaging keeps coffee intact</span>
+                <span>Embalagem mantém o café intacto</span>
               </div>
 
               <div>
@@ -44,35 +49,35 @@ export function Home() {
                   size={32}
                   weight="fill"
                   color={theme.colors.background}
-                  style={{backgroundColor: theme.colors.yellow }}
+                  style={{ backgroundColor: theme.colors.yellow }}
                 />
-                <span>Fast delivery and dryness</span>
+                <span>Entrega rápida e rastreada</span>
               </div>
 
-              
               <div>
                 <Coffee
                   size={32}
                   weight="fill"
                   color={theme.colors.background}
-                  style={{backgroundColor: theme.colors.purple }}
+                  style={{ backgroundColor: theme.colors.purple }}
                 />
-                <span>The coffee arrives fresh to you</span>
+                <span>O café chega fresquinho até você</span>
               </div>
             </Info>
           </div>
 
-          <img src="/images/hero.svg" alt="Café do Coffee Delivery"/>
+          <img src="/images/hero.svg" alt="Café do Coffee Delivery" />
         </HeroContent>
 
-        <img src="/images/hero-bg.svg" id="hero-bg" alt=""/>
+        <img src="/images/hero-bg.svg" id="hero-bg" alt="" />
       </Hero>
 
       <CoffeeList>
         <h2>Nossos cafés</h2>
+
         <div>
           {coffees.map((coffee) => (
-            <Card key={coffee.id} coffee={coffee}/>
+            <Card key={coffee.id} coffee={coffee} />
           ))}
         </div>
       </CoffeeList>

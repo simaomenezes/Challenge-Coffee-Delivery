@@ -1,9 +1,19 @@
-import { useEffect, useState } from "react"
-import { useTheme } from "styled-components"
-import { useCart } from "../../hooks/useCart"
-import { CoffeeImg, Container, Control, Description, Order, Price, Tags, Title } from "./styles"
-import { QuantityInput } from "../Form/QuantityInput"
-import { CheckFat, ShoppingCart } from "@phosphor-icons/react"
+import { CheckFat, ShoppingCart } from '@phosphor-icons/react'
+import { useTheme } from 'styled-components'
+import { useEffect, useState } from 'react'
+
+import { QuantityInput } from '../Form/QuantityInput'
+import { useCart } from '../../hooks/useCart'
+import {
+  CoffeeImg,
+  Container,
+  Control,
+  Description,
+  Order,
+  Price,
+  Tags,
+  Title,
+} from './styles'
 
 type Props = {
   coffee: {
@@ -22,13 +32,6 @@ export function Card({ coffee }: Props) {
   const theme = useTheme()
   const { addItem } = useCart()
 
-
-  function handleAddItem() {
-    addItem({id: coffee.id, quantity})
-    setIsItemAdded(true)
-    setQuantity(1)
-  }
-
   function incrementQuantity() {
     setQuantity((state) => state + 1)
   }
@@ -39,7 +42,12 @@ export function Card({ coffee }: Props) {
     }
   }
 
-  
+  function handleAddItem() {
+    addItem({ id: coffee.id, quantity })
+    setIsItemAdded(true)
+    setQuantity(1)
+  }
+
   useEffect(() => {
     let timeout: number
 
@@ -56,20 +64,18 @@ export function Card({ coffee }: Props) {
     }
   }, [isItemAdded])
 
-
   return (
     <Container>
-      <CoffeeImg src={coffee.image} alt={coffee.title}/>
+      <CoffeeImg src={coffee.image} alt={coffee.title} />
 
       <Tags>
-        {
-          coffee.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))
-        }
+        {coffee.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
       </Tags>
 
       <Title>{coffee.title}</Title>
+
       <Description>{coffee.description}</Description>
 
       <Control>
@@ -96,7 +102,6 @@ export function Card({ coffee }: Props) {
               <ShoppingCart size={22} color={theme.colors['base-card']} />
             )}
           </button>
-
         </Order>
       </Control>
     </Container>
