@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { mixins } from '../../styles/mixins'
 
-export const CardContainer = styled.div`
+export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors['base-card']};
   padding: 0 20px 20px;
   border-radius: 6px 36px;
